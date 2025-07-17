@@ -1,0 +1,23 @@
+create schema people;
+
+create table people.persons(
+    name varchar(50) not null,
+    surname varchar(50) not null,
+    age int not null,
+    phone_number varchar(20),
+    city_of_living varchar(20),
+    primary key (name, surname, age)
+);
+
+insert into people.persons (name, surname, age, phone_number, city_of_living)
+values ('Петя', 'Александров', '31', '890-890', 'Moscow'),
+       ('Саня', 'Бочкин', '38', '890-890', 'Sankt-Petersburg');
+
+select name, surname
+from people.persons
+where city_of_living = 'Moscow';
+
+select name, age > 27
+from people.persons
+order by age desc;
+
