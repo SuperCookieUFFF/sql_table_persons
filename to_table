@@ -1,0 +1,24 @@
+create table totable.customer(
+id serial primary key,
+name varchar(100) not null,
+surname varchar(100) not null,
+age int,
+phone_number varchar(20)
+);
+
+create table totable.orders(
+id serial primary key,
+date date not null,
+customer_id int not null,
+product_name varchar(255) not null,
+amount int not null,
+constraint fk_customer
+foreign key(customer_id)
+references totable.customer(id)
+on delete cascade
+);
+
+select o.product_name
+from totable.orders o
+         join totable.customer c on o.customer_id = c.id
+where lower(c.name) = 'alexey';
